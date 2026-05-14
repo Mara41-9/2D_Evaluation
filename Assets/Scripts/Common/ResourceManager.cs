@@ -99,17 +99,26 @@ public class ResourceManager : MonoBehaviour
 
     // 어드레서블 프리팹을 비동기로 생성하는 함수
     // Transform parent = null : 부모를 안 넣어도 된다
-    public void Instantiate(string address, Transform parent = null)
+    public async UniTask<GameObject> InstantiateAsync(string address, Transform parent = null, bool instantiateInWorldSpace = false)
     {
-        // Addressables.InstantiateAsync(address, parent) : 어드레서블 주소로 프리팹을 찾아서 로드하고 생성까지 해줌
-        // .Completed += (op) => : 생성이 끝났을 때 실행할 함수를 등록하는 부분
-        Addressables.InstantiateAsync(address, parent).Completed += (op) =>
+        AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(address, parent, instantiateInWorldSpace);
+
+        try
         {
-            if(op.Status != AsyncOperationStatus.Succeeded)
+            GameObject instance = await handle.ToUniTask();
+            return instance;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"프리팹 생성 실패: {address} / Error: {e.Message}");
+
+            if(handle.IsValid())
             {
-                Debug.LogError($"프리팹 생성 실패: {address}");
+                Addressables.Release(handle);
             }
-        };
+
+            return null;
+        }
     }
 
 
