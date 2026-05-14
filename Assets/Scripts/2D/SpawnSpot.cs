@@ -61,7 +61,7 @@ public class SpawnSpot : MonoBehaviour
     }
 
 
-    private void StartSpawn()
+    public void StartSpawn()
     {
         switch (_spawnSpotType)
         {
@@ -72,6 +72,8 @@ public class SpawnSpot : MonoBehaviour
                 this.gameObject.SetActive(false);   // 생성 후 비활성화 -> 중복 생성 방지 
                 break;
             case SpawnSpotType.Monster:
+                GameObjectManager.Instance.CreateMonster(_spawnObjectDataId, this.transform).Forget();
+                this.gameObject.SetActive(false);
                 break;
             case SpawnSpotType.Dialogue:
                 UIManager.Instance.OpenDialogueUI(_spawnObjectDataId);

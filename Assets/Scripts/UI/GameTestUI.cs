@@ -5,6 +5,8 @@ public class GameTestUI : MonoBehaviour
 {
     // [SerializeField] private DaniTechUIButton Button_BBB;
 
+    [SerializeField] private SpawnSpot SpawnSpot_Monster;
+
     private void OnEnable()
     {
         // UGUI꺼
@@ -46,6 +48,6 @@ public class GameTestUI : MonoBehaviour
 
     public void OnClick_SelectTestBtn()
     {
-        GameObjectManager.Instance.RequestSpawnEnemy();
+        SpawnSpot_Monster.StartSpawn();
     }
 }

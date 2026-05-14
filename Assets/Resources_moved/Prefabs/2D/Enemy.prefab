@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2340249117243976336}
-  - component: {fileID: 6120787298032195716}
   - component: {fileID: 6646034308320395116}
   - component: {fileID: 4332652537768564162}
+  - component: {fileID: 7259772247260618079}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -35,19 +35,6 @@ Transform:
   - {fileID: 4009294210342355080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6120787298032195716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819900439475098771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec1ad3014671d64c91df161eafb1573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Nara_2DEnemy
-  SpriteRenderer_Enemy: {fileID: 5606547257833661630}
 --- !u!50 &6646034308320395116
 Rigidbody2D:
   serializedVersion: 5
@@ -121,6 +108,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2546713, y: 0.8071543}
   m_EdgeRadius: 0
+--- !u!114 &7259772247260618079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819900439475098771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad0cb8bf29de6aa4b9e743721cd724fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster2D
+  _monsterInstanceId: 
+  _monsterDataId: 
+  _monsterName: 
+  SpriteRenderer_Monster: {fileID: 5606547257833661630}
 --- !u!1 &4533073332287732399
 GameObject:
   m_ObjectHideFlags: 0

@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // 충돌한 몬스터의 정보를 받아오자
-        var enemyComponent = collision.gameObject.GetComponent<Nara_2DEnemy>();
+        var enemyComponent = collision.gameObject.GetComponent<Monster2D>();
 
         if(enemyComponent == null)
         {
@@ -145,8 +145,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // 충돌된 오브젝트를 플레이어가 직접 제거하는게 아니라, Id로 게임오브젝트 매니저한테 삭제 요청
-        GameObjectManager.Instance.RequestDestroyEntityObject(enemyComponent.EntityInstanceId);
-
+        GameObjectManager.Instance.DestroyMonster(enemyComponent._monsterInstanceId);
         // 피그마를 잡으면 스코어를 올려주자!
         AddGameScore();
     }

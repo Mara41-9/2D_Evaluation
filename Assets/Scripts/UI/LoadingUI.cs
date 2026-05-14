@@ -12,7 +12,7 @@ public class LoadingUI : UIBase
     [SerializeField] private UnityEngine.Color[] ColorArray_LoadingBar;   // 로딩바 색상 배열
 
     private CancellationTokenSource _cancelToken;   // 비동기 로딩바 작업을 취소할 때 쓰려고 만든 변수
-    float[] _pausePoints = { 0.2f, 0.6f, 0.9f };    // 로딩바가 잠깐 멈출 지점들
+    float[] _pausePoints = { 0.2f, 0.2f, 0.2f };    // 로딩바가 잠깐 멈출 지점들
     int _pauseIndex = 0;                            // 현재 몇 번째 멈춤 지점을 처리 중인지 저장하는 변수
 
     private void OnEnable()
@@ -42,7 +42,7 @@ public class LoadingUI : UIBase
         // 이미지를 비동기로 불러와서 RawImage_LoadingImg에 넣자
         GameUtil.LoadAndSetTexture(RawImage_LoadingImg, texturePath).Forget();
         // 2.7초 동안 로딩바를 채우는 비동기 함수를 실행
-        StartLoadingResouce(2.7f).Forget();
+        StartLoadingResouce(1f).Forget();
     }
 
     // 로딩바를 일정 시간 동안 채우는 비동기 함수
