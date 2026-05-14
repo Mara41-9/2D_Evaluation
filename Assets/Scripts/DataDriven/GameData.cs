@@ -65,12 +65,14 @@ public class ItemData : GameDataBase
     public string IconPath;
 }
 
+[System.Serializable]
 public class DialogueGroupData : GameDataBase
 {
     public string Comment;
     public List<string> DialogueIdList;
 }
 
+[System.Serializable]
 public class DialogueData : GameDataBase
 {
     public string CharacterDataId;

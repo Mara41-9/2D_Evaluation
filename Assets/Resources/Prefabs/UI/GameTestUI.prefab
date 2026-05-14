@@ -148,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6743463301830781328
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1261,7 +1261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98eddcafa95b8364a9b02090b5418bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTestUI
-  InputField_ConsoleCommand: {fileID: 1165879032545408383}
 --- !u!1 &6929368775145428894
 GameObject:
   m_ObjectHideFlags: 0

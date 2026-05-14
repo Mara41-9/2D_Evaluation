@@ -37,8 +37,7 @@ public static partial class UIManagerExtension
     public static void ShowStartupUIOnGameStart(this UIManager uiManager)
     {
         uiManager.OpenLoadingUI();
-        // 게임 로비 UI를 여기서 오픈해주자 -> uiManager.
-        // MainUI도
+        uiManager.OpenDialogueUI("dialogue_mainstream_1_1_100");
     }
 
     public static void OpenPropilePopup(this UIManager uiManager)
