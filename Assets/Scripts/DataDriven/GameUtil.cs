@@ -18,6 +18,7 @@ public static class GameUtil
         GameDataManager.Instance.LoadDNItemData(("DNItem"));
         GameDataManager.Instance.LoadItemData(("Item"));
         GameDataManager.Instance.LoadDialogueData();
+        GameDataManager.Instance.LoadAll();
     }
 
 

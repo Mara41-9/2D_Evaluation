@@ -34,6 +34,8 @@ public class GameDataManager : MonoBehaviour
     public Dictionary<string, ItemData> ItemDataList { get; private set; } = new Dictionary<string, ItemData>();
     public Dictionary<string, DialogueGroupData> DialogueGroupDataList { get; private set; } = new Dictionary<string, DialogueGroupData>();
     public Dictionary<string, DialogueData> DialogueDataList { get; private set; } = new Dictionary<string, DialogueData>();
+    public Dictionary<string, MonsterData> MonsterDataList { get; private set; } = new Dictionary<string, MonsterData>();
+    public Dictionary<string, FieldObjectData> FieldObjectDataList { get; private set; } = new Dictionary<string, FieldObjectData>();
 
     private Dictionary<string, T> LoadData<T>(string tableName) where T : GameDataBase
     {
@@ -105,8 +107,14 @@ public class GameDataManager : MonoBehaviour
 
     public void LoadDialogueData()
     {
-        DialogueDataList = LoadData<DialogueData>(("Dialogue"));
-        DialogueGroupDataList = LoadData<DialogueGroupData>(("DialogueGroup"));
+        DialogueDataList = LoadData<DialogueData>("Dialogue");
+        DialogueGroupDataList = LoadData<DialogueGroupData>("DialogueGroup");
+    }
+
+    public void LoadAll()
+    {
+        FieldObjectDataList = LoadData<FieldObjectData>("FieldObject");
+        MonsterDataList = LoadData<MonsterData>("Monster");
     }
 
 
@@ -167,5 +175,19 @@ public class GameDataManager : MonoBehaviour
         if (DialogueDataList == null || string.IsNullOrEmpty(dataId)) return null;
 
         return DialogueDataList.TryGetValue(dataId, out var data) ? data : null;
+    }
+
+    public MonsterData GetMonsterData(string dataId)
+    {
+        if (MonsterDataList == null || string.IsNullOrEmpty(dataId)) return null;
+
+        return MonsterDataList.TryGetValue(dataId, out var data) ? data : null;
+    }
+
+    public FieldObjectData GetFieldObjectData(string dataId)
+    {
+        if (FieldObjectDataList == null || string.IsNullOrEmpty(dataId)) return null;
+
+        return FieldObjectDataList.TryGetValue(dataId, out var data) ? data : null;
     }
 }

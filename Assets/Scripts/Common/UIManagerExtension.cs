@@ -37,7 +37,6 @@ public static partial class UIManagerExtension
     public static void ShowStartupUIOnGameStart(this UIManager uiManager)
     {
         uiManager.OpenLoadingUI();
-        uiManager.OpenDialogueUI("dialogue_mainstream_1_1_100");
     }
 
     public static void OpenPropilePopup(this UIManager uiManager)
