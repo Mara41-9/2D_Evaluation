@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameObjectManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class GameObjectManager : MonoBehaviour
 
     // 생성된 오브젝트의 생명을 보관
     private Dictionary<int, GameObject> _createdGameObjectContainer = new Dictionary<int, GameObject>();
+    private Dictionary<int, FieldObject2D> _fieldObjectContainer = new Dictionary<int, FieldObject2D>();
+
 
     private void Awake()
     {
@@ -97,5 +100,57 @@ public class GameObjectManager : MonoBehaviour
         _createdGameObjectContainer.Remove(instanceId);
         // 씬에서 GameObject 삭제
         Destroy(gObj);
+    }
+
+
+
+    //[필드 오브젝트] ====================================================================================================
+
+    // 필드 오브젝트를 생성하는 비동기 함수
+    public async UniTaskVoid CreateFieldObject(string fieldObjectDataId, Transform spawnSpot)
+    {
+        // GameDataManager에서 FieldObject 데이터 가져오기
+        var fieldObject = GameDataManager.Instance.GetFieldObjectData(fieldObjectDataId);
+        if (fieldObject != null)
+        {
+            // 어드레서블 기반 비동기 생성
+            // fieldObject.PrefabPath: 생성할 프리팹 주소, Root_Enemy: 생성된 오브젝트 부모, true: 월드 좌표 유지
+            var createdObj = await ResourceManager.Instance.InstantiateAsync(fieldObject.PrefabPath, Root_Enemy, true);
+            // 생성된 오브젝트의 위치 설정
+            createdObj.transform.position = spawnSpot.position;
+            // 생성된 오브젝트를 관리 시스템에 등록
+            AddFieldObjectOnCreate(createdObj, fieldObjectDataId);
+        }
+    }
+
+    // 생성 완료된 필드 오브젝트를 관리 컨테이너에 등록
+    private void AddFieldObjectOnCreate(GameObject createdObject, string fieldObjectDataId)
+    {
+        // 생성된 오브젝트 키 증가
+        _objectInstanceKeyGenerator++;
+        // 현재 생성된 고유 ID 저장
+        var generatedInstanceId = _objectInstanceKeyGenerator;
+        // 생성된 오브젝트에서 FieldObject2D 컴포넌트 가져오기
+        var fieldObject = createdObject.GetComponent<FieldObject2D>();
+
+        if (fieldObject != null)
+        {
+            _fieldObjectContainer.Add(generatedInstanceId, fieldObject);
+            // 생성된 오브젝트 내부 데이터 초기화
+            fieldObject.InitFieldObjectInfoOnCreated(generatedInstanceId, fieldObjectDataId);
+        }
+    }
+
+    // 인스턴스 ID로 오브젝트 찾기
+    public FieldObject2D GetFieldObjectByInstanceId(int fieldObjectInstanceId)
+    {
+        // _fieldObjectContainer 안에 해당 키가 없으면
+        if (_fieldObjectContainer.ContainsKey(fieldObjectInstanceId) == false)
+        {
+            Debug.LogError($"{fieldObjectInstanceId} 찾으려는 필드 오브젝트가 유효하지 않습니다");
+            return null;
+        }
+
+        return _fieldObjectContainer[fieldObjectInstanceId];
     }
 }
