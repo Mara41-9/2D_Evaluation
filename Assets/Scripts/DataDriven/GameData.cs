@@ -81,3 +81,23 @@ public class DialogueData : GameDataBase
     public string TexturePath;
     public string VoicePath;
 }
+
+[System.Serializable]
+public class FieldObjectData : GameDataBase
+{
+    public string FieldObjectType;
+    public string Name;
+    public string Description;
+    public List<int> DropCountRange;
+    public string IconPath;
+    public string PrefabPath;
+}
+
+[System.Serializable]
+public class MonsterData : GameDataBase
+{
+    public string Name;
+    public string Description;
+    public string IconPath;
+    public string PrefabPath;
+}
