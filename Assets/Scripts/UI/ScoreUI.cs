@@ -16,5 +16,6 @@ public class ScoreUI : MonoBehaviour
             Debug.LogWarning("저장 시도!");
             GameManager.Instance.SaveData();
         }
+
     }
 }

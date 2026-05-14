@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
 
 // 어떤 컴포넌트가 필수로 필요하다는 것을 강제
@@ -18,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("애니메이터")]
     [SerializeField] private EntityAnimController AnimatorController_Entity;
 
+    [Header("공격 설정")]
+    [SerializeField] private Transform _attackPoint;
+    [SerializeField] private float _attackRadius = 1f;
+    [SerializeField] private LayerMask _monsterLayer;
+
     // 우선 직접 들고 있다가 추후에 UI매니저한테 요청하도록 개선해볼 것
     [SerializeField] private ScoreUI _scoreUI;
 
@@ -27,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _lookRight = true;
 
     private int _currentScore;
+
+    private HashSet<int> _hitMonsters = new HashSet<int>();   // 중복을 허용하지 않기 위해 HashSet 사용
 
     private void Awake()
     {
@@ -53,10 +62,11 @@ public class PlayerMovement : MonoBehaviour
         bool isMoving = (_horizontalInput != 0);
 
         // 컨트롤 키를 누르면
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {   
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
             // 공격해라
             ChangePlayerState(EntityAnimState.Atk);
+            Attack();
         }
         else  // 그게 아니라면
         {
@@ -117,6 +127,46 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = scaler;           // 마지막으로 바뀐 값을 실제 오브젝트에 적용
     }
 
+    // 공격 범위 안에 있는 몬스터들을 찾아서 제거하는 함수
+    private void Attack()
+    {
+        // 원 범위 안에 들어온 Collider들을 전부 찾아라
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _monsterLayer);
+
+        foreach(Collider2D enemy in hitMonsters)
+        {
+            Monster2D monster = enemy.GetComponent<Monster2D>();
+
+            int id = monster._monsterInstanceId;
+
+            if(_hitMonsters.Contains(id))
+            {
+                continue;
+            }
+
+            _hitMonsters.Add(id);
+
+            if (monster != null)
+            {
+                DelayDestroy(id);
+            }
+        }
+    }
+
+    // 몬스터 제거할 때 딜레이 걸 수 있도록
+    // async -> 비동기 작업! (기다리는 작업)
+    private async void DelayDestroy(int monsterId)
+    {
+        // 0.5초동안 기다려
+        await System.Threading.Tasks.Task.Delay(500);
+
+        GameObjectManager.Instance.DestroyMonster(monsterId);
+        AddGameScore();
+
+        _hitMonsters.Remove(monsterId);
+    }
+
+
     private void OnDrawGizmos()
     {
         if(_groundCheck != null)
@@ -124,31 +174,43 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_groundCheck.position, _checkRadius);
         }
+
+        if(_attackPoint != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(_attackPoint.position, _attackRadius);
+        }
     }
 
     // 적 충돌 시 처리하는 함수
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 플레이어의 콜리전에 충돌한 객체가 Enemy 태그가 아니라면
-        if(collision.gameObject.CompareTag("Enemy") == false)
-        {
-            return;
-        }
 
-        // 충돌한 몬스터의 정보를 받아오자
-        var enemyComponent = collision.gameObject.GetComponent<Monster2D>();
+        //// 플레이어의 콜리전에 충돌한 객체가 Enemy 태그가 아니라면
+        //if(collision.gameObject.CompareTag("Enemy") == false)
+        //{
+        //    return;
+        //}
 
-        if(enemyComponent == null)
-        {
-            Debug.Log($"충돌한 적 객체에서 컴포넌트를 찾을 수 없습니다 : {gameObject.name}");
-            return;
-        }
+        //// 충돌한 몬스터의 정보를 받아오자
+        //var enemyComponent = collision.gameObject.GetComponent<Monster2D>();
 
-        // 충돌된 오브젝트를 플레이어가 직접 제거하는게 아니라, Id로 게임오브젝트 매니저한테 삭제 요청
-        GameObjectManager.Instance.DestroyMonster(enemyComponent._monsterInstanceId);
-        // 피그마를 잡으면 스코어를 올려주자!
-        AddGameScore();
+        //if(enemyComponent == null)
+        //{
+        //    Debug.Log($"충돌한 적 객체에서 컴포넌트를 찾을 수 없습니다 : {gameObject.name}");
+        //    return;
+        //}
+
+        //if(_isAttacking)
+        //{
+        //    // 충돌된 오브젝트를 플레이어가 직접 제거하는게 아니라, Id로 게임오브젝트 매니저한테 삭제 요청
+        //    GameObjectManager.Instance.DestroyMonster(enemyComponent._monsterInstanceId);
+        //    // 피그마를 잡으면 스코어를 올려주자!
+        //    AddGameScore();
+        //}
+        
     }
+
 
     private void AddGameScore()
     {

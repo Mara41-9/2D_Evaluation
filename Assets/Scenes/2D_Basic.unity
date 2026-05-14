@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   Prefab_Player: {fileID: 8842211575716332627}
   _moveSpeed: 5
-  _offset: {x: 8, y: 3.5, z: -10}
+  _offset: {x: 5, y: 3.5, z: -10}
 --- !u!4 &385656572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3231778976056970547, guid: 2949edd787fcadb43a86a41d8289f2d1, type: 3}
@@ -1515,6 +1515,10 @@ PrefabInstance:
     - target: {fileID: 3021948649856352796, guid: 9cce81978f7837a4e97b82b55786583e, type: 3}
       propertyPath: m_Name
       value: Princess
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021948649856352796, guid: 9cce81978f7837a4e97b82b55786583e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3021948649856352796, guid: 9cce81978f7837a4e97b82b55786583e, type: 3}
       propertyPath: m_TagString

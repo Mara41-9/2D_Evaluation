@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6646034308320395116}
   - component: {fileID: 4332652537768564162}
   - component: {fileID: 7259772247260618079}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0cb8bf29de6aa4b9e743721cd724fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster2D
-  _monsterInstanceId: 
+  _monsterInstanceId: 0
   _monsterDataId: 
   _monsterName: 
   SpriteRenderer_Monster: {fileID: 5606547257833661630}
