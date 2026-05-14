@@ -35,29 +35,34 @@ public class GameDataManager : MonoBehaviour
     public Dictionary<string, DialogueGroupData> DialogueGroupDataList { get; private set; } = new Dictionary<string, DialogueGroupData>();
     public Dictionary<string, DialogueData> DialogueDataList { get; private set; } = new Dictionary<string, DialogueData>();
 
-    private Dictionary<string, T> LoadData<T>(string jsonPath) where T : GameDataBase
+    private Dictionary<string, T> LoadData<T>(string tableName) where T : GameDataBase
     {
-        if (!File.Exists(jsonPath))
+        // 경로 설정 (확장자 .json 제외)
+        // // Resources/JsonOutput 폴더
+        string resourcePath = $"JsonOutput/{tableName}";
+
+        // 리소스 로드
+        TextAsset textAsset = Resources.Load<TextAsset>(resourcePath);
+
+        if (textAsset == null)
         {
-            Debug.LogError($"[Error] 파일을 찾을 수 없습니다: {jsonPath}");
+            Debug.LogError($"[Error] 파일을 찾을 수 없습니다: {resourcePath}");
             return new Dictionary<string, T>();
         }
 
         try
         {
-            string jsonString = File.ReadAllText(jsonPath);
+            string jsonString = textAsset.text;
 
-            // JsonUtility는 List<T>를 직접 못 가져오므로 Wrapper를 사용합니다.
-            // 만약 JSON이 배열 형태([ {...}, {...} ])라면 아래 방식이 필요합니다.
-            // 만약 JSON 구조가 { "items": [...] } 형태가 아니라면 
-            // jsonString을 수정하여 강제로 감싸는 트릭을 써야 합니다.
+            // 4. JsonUtility용 Wrapper 트릭 적용
             string wrappedJson = "{\"items\":" + jsonString + "}";
             SerializationWrapper<T> wrapper = JsonUtility.FromJson<SerializationWrapper<T>>(wrappedJson);
 
             if (wrapper != null && wrapper.items != null)
             {
                 Debug.Log($"{typeof(T).Name} 데이터를 {wrapper.items.Count}개 로드했습니다.");
-                return wrapper.items.ToDictionary(item => item.Id);
+                // ToDictionary를 사용하려면 각 클래스(T)에 Id 필드가 있어야 합니다.
+                return wrapper.items.ToDictionary(item => item.Id.ToString());
             }
         }
         catch (Exception ex)
@@ -100,8 +105,8 @@ public class GameDataManager : MonoBehaviour
 
     public void LoadDialogueData()
     {
-        DialogueDataList = LoadData<DialogueData>(GameUtil.GetFullDataPath("Dialogue"));
-        DialogueGroupDataList = LoadData<DialogueGroupData>(GameUtil.GetFullDataPath("DialogueGroup"));
+        DialogueDataList = LoadData<DialogueData>(("Dialogue"));
+        DialogueGroupDataList = LoadData<DialogueGroupData>(("DialogueGroup"));
     }
 
 
