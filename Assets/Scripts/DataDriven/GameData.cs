@@ -68,7 +68,7 @@ public class ItemData : GameDataBase
 public class DialogueGroupData : GameDataBase
 {
     public string Comment;
-    public string DialogueIdList;
+    public List<string> DialogueIdList;
 }
 
 public class DialogueData : GameDataBase
