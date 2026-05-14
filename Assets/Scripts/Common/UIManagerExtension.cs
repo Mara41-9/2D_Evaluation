@@ -18,6 +18,7 @@ public enum UIType
     QuestPopup,
     InventoryPopup,
     LoadingUI,
+    DialogueUI
 }
 
 public static partial class UIManagerExtension
@@ -98,5 +99,20 @@ public static partial class UIManagerExtension
     public static void CloseLoadingUI(this UIManager uiManager)
     {
         uiManager.CloseUI(UIRootType.VeryFrontUI, UIType.LoadingUI);
+    }
+
+    public static void OpenDialogueUI(this UIManager uiManager, string startDialogueId)
+    {
+        var uiBase = uiManager.OpenContentUI(UIType.DialogueUI);
+        if( uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
+        }
+
+        if(uiBase is DialogueUI dialogueUI)
+        {
+            dialogueUI.StartDialogue(startDialogueId);
+        }
     }
 }
