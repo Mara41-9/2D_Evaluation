@@ -64,3 +64,17 @@ public class ItemData : GameDataBase
     public int SellingPrice;
     public string IconPath;
 }
+
+public class DialogueGroupData : GameDataBase
+{
+    public string Comment;
+    public string DialogueIdList;
+}
+
+public class DialogueData : GameDataBase
+{
+    public string CharacterDataId;
+    public string Description;
+    public string TexturePath;
+    public string VoicePath;
+}

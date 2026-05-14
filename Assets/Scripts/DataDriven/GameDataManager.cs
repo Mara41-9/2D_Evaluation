@@ -32,6 +32,8 @@ public class GameDataManager : MonoBehaviour
     public Dictionary<string, CostumeData> CostumeDataList { get; private set; } = new Dictionary<string, CostumeData>();
     public Dictionary<string, DNItemData> DNItemDataList { get; private set; } = new Dictionary<string, DNItemData>();
     public Dictionary<string, ItemData> ItemDataList { get; private set; } = new Dictionary<string, ItemData>();
+    public Dictionary<string, DialogueGroupData> DialogueGroupDataList { get; private set; } = new Dictionary<string, DialogueGroupData>();
+    public Dictionary<string, DialogueData> DialogueDataList { get; private set; } = new Dictionary<string, DialogueData>();
 
     private Dictionary<string, T> LoadData<T>(string jsonPath) where T : GameDataBase
     {
@@ -96,6 +98,12 @@ public class GameDataManager : MonoBehaviour
         ItemDataList = LoadData<ItemData>(jsonPath);
     }
 
+    public void LoadDialogueData()
+    {
+        DialogueDataList = LoadData<DialogueData>(GameUtil.GetFullDataPath("Dialogue"));
+        DialogueGroupDataList = LoadData<DialogueGroupData>(GameUtil.GetFullDataPath("DialogueGroup"));
+    }
+
 
     // [아래는 사용을 위한 부분들을 메서드 정의] =========================================================================================
     // Get과 Find이름을 꼭 구별 하자!
@@ -140,5 +148,19 @@ public class GameDataManager : MonoBehaviour
         if (ItemDataList == null || string.IsNullOrEmpty(id)) return null;
 
         return ItemDataList.TryGetValue(id, out var data) ? data : null;
+    }
+
+    public DialogueGroupData GetDialogueGroupData(string dataId)
+    {
+        if (DialogueDataList == null || string.IsNullOrEmpty(dataId)) return null;
+
+        return DialogueGroupDataList.TryGetValue(dataId, out var data) ? data : null;
+    }
+
+    public DialogueData GetDialogueData(string dataId)
+    {
+        if (DialogueDataList == null || string.IsNullOrEmpty(dataId)) return null;
+
+        return DialogueDataList.TryGetValue(dataId, out var data) ? data : null;
     }
 }

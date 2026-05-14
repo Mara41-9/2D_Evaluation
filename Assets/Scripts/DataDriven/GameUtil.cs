@@ -1,4 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +17,7 @@ public static class GameUtil
         GameDataManager.Instance.LoadCostumeData(GetFullDataPath("Costume"));
         GameDataManager.Instance.LoadDNItemData(GetFullDataPath("DNItem"));
         GameDataManager.Instance.LoadItemData(GetFullDataPath("Item"));
+        GameDataManager.Instance.LoadDialogueData();
     }
 
     public static string GetFullDataPath(string dataTableName)
@@ -111,6 +114,24 @@ public static class GameUtil
             // 한 번만 재생 (기존 재생 중인 효과음 위에 겹쳐서 재생 가능)
             audioSource.PlayOneShot(clip);
         }
+    }
+
+    public static List<string> GetDialogueIdList(string dialogueGroupId)
+    {
+        var list = new List<string>();
+
+        // "dialogue_group_mainstream_1_1"
+        var data = GameDataManager.Instance.GetDialogueGroupData(dialogueGroupId);
+        if (data != null)
+        {
+            var idArr = data.DialogueIdList;
+            foreach (var id in idArr)
+            {
+                list.Add(id);
+            }
+        }
+
+        return list;
     }
 
 
