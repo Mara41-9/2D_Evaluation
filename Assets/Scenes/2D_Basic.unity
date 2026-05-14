@@ -1478,7 +1478,8 @@ PrefabInstance:
       value: Sample_TileMap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4538845993474615110, guid: 872044c3d6c9ac245a24195305cee2c7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 872044c3d6c9ac245a24195305cee2c7, type: 3}
