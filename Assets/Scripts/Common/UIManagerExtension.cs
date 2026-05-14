@@ -1,0 +1,102 @@
+﻿using UnityEngine;
+
+// "UI를 어떤 Canvas Root에 생성할 것인가"를 구분!
+public enum UIRootType
+{
+    None = 0,
+    BackgroundUI,
+    MainUI,
+    ContentUI,
+    PopupUI,
+    VeryFrontUI,
+}
+
+public enum UIType
+{
+    ProfilePopup,
+    SkillPopup,
+    QuestPopup,
+    InventoryPopup,
+    LoadingUI,
+}
+
+public static partial class UIManagerExtension
+{
+    // this UIManager uiManager -> 이 함수는 UIManager 전용 확장 함수다!
+    // UIType → Resources 경로(string)로 변환하는 함수
+    public static string GetUIPath(this UIManager uiManager, UIRootType uiRootType, UIType uiType)
+    {
+        string path = string.Empty; // "" == string.Empty
+
+        // Resources.Load를 할 경로를 직접 명시
+        path = $"Prefabs/UI/{uiRootType}/{uiType}";
+        return path;
+    }
+
+    public static void ShowStartupUIOnGameStart(this UIManager uiManager)
+    {
+        uiManager.OpenLoadingUI();
+        // 게임 로비 UI를 여기서 오픈해주자 -> uiManager.
+        // MainUI도
+    }
+
+    public static void OpenPropilePopup(this UIManager uiManager)
+    {
+        // 팝업 UI 가져오기 (없으면 생성까지 자동)
+        var uiBase = uiManager.OpenPopupUI(UIType.ProfilePopup);
+
+        if (uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
+        }
+    }
+
+    public static void OpenSkillPopup(this UIManager uiManager)
+    {
+        var uiBase = uiManager.OpenPopupUI(UIType.SkillPopup);
+
+        if (uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
+        }
+    }
+
+    public static void OpenQuestPopup(this UIManager uiManager)
+    {
+        var uiBase = uiManager.OpenPopupUI(UIType.QuestPopup);
+
+        if (uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
+        }
+    }
+
+    public static void OpenInventoryPopup(this UIManager uiManager)
+    {
+        var uiBase = uiManager.OpenPopupUI(UIType.InventoryPopup);
+
+        if (uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
+        }
+    }
+
+    public static void OpenLoadingUI(this UIManager uiManager)
+    {
+        var uiBase = uiManager.OpenUI(UIRootType.VeryFrontUI, UIType.LoadingUI);
+        if(uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
+        }
+    }
+
+    public static void CloseLoadingUI(this UIManager uiManager)
+    {
+        uiManager.CloseUI(UIRootType.VeryFrontUI, UIType.LoadingUI);
+    }
+}
