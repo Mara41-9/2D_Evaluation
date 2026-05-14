@@ -75,6 +75,7 @@ public class SpawnSpot : MonoBehaviour
                 break;
             case SpawnSpotType.Dialogue:
                 UIManager.Instance.OpenDialogueUI(_spawnObjectDataId);
+                this.gameObject.SetActive(false);
                 break;
         }
     }
