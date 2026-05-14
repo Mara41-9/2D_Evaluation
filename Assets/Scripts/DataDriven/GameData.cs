@@ -76,6 +76,7 @@ public class DialogueGroupData : GameDataBase
 public class DialogueData : GameDataBase
 {
     public string CharacterDataId;
+    public string NextDialogueId;
     public string Description;
     public string TexturePath;
     public string VoicePath;
