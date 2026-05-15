@@ -59,6 +59,22 @@ public class GameObjectManager : MonoBehaviour
         }
     }
 
+    // 특정 instanceId를 가진 필드 오브젝트 제거
+    public void RequestDestroyFieldObject(int instanceId)
+    {
+        // instanceId로 실제 오브젝트 찾기
+        var fieldObjectComponent = GetFieldObjectByInstanceId(instanceId);
+        if (fieldObjectComponent == null)
+        {
+            return;
+        }
+
+        // 딕셔너리에서 해당 오브젝트 제거
+        _fieldObjectContainer.Remove(instanceId);
+        // 씬에 있는 실제 오브젝트도 삭제
+        Destroy(fieldObjectComponent.gameObject);
+    }
+
     // 인스턴스 ID로 오브젝트 찾기
     public FieldObject2D GetFieldObjectByInstanceId(int fieldObjectInstanceId)
     {

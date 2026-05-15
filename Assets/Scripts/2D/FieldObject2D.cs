@@ -2,7 +2,7 @@
 
 public class FieldObject2D : MonoBehaviour
 {
-    [SerializeField] private string _fieldObjectInstanceId;  // 필드 오브젝트 개별 인스턴스 ID
+    [SerializeField] private int _fieldObjectInstanceId;     // 필드 오브젝트 개별 인스턴스 ID
     [SerializeField] private string _fieldObjectDataId;      // 어떤 종류의 오브젝트인지 ID
     [SerializeField] private string _fieldObjectName;        // 오브젝트 이름
 
@@ -18,6 +18,7 @@ public class FieldObject2D : MonoBehaviour
         }
 
         // 현재 오브젝트 데이터 ID 저장
+        _fieldObjectInstanceId = instanceId;
         _fieldObjectDataId = fieldObjectDataId;
     }
 
