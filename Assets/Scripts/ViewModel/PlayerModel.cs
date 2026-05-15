@@ -14,7 +14,7 @@ public class PlayerModel
     public string LastMapDataId;          // 마지막으로 있었던 맵의 ID
     public Vector3 LastMapPosition;       // 마지막으로 있던 위치
 
-    public List<ItemModel> ItemList;  // 플레이어가 가지고 있는 아이템 목록
+    public List<ItemModel> ItemList = new List<ItemModel>();  // 플레이어가 가지고 있는 아이템 목록
     public List<StageProgressModel> StagePogressList;   // 플레이어의 스테이지 진행 목록
 
 }
