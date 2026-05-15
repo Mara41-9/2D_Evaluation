@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fde8fc7bc4bb28a45a1f8fc064807248
+    m_Address: Icon/Icon_Item_Corn
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ff1754fe6551f064ebe638458885ccd6
     m_Address: Icon/Icon_Item_Potion_1
     m_ReadOnly: 0
