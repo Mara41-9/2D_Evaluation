@@ -21,6 +21,7 @@ public enum UIType
     LoadingUI,
     DialogueUI,
     SuccessPopup,
+    GameOverPopup,
 }
 
 public static partial class UIManagerExtension
@@ -136,6 +137,16 @@ public static partial class UIManagerExtension
     public static void OpenSuccessPopup(this UIManager uiManager)
     {
         var uiBase = uiManager.OpenPopupUI(UIType.SuccessPopup);
+        if(uiBase == null)
+        {
+            Debug.LogWarning($"UI가 생성되지 않았습니다");
+            return;
+        }
+    }
+
+    public static void OpenGameOverPopup(this UIManager uiManager)
+    {
+        var uiBase = uiManager.OpenPopupUI(UIType.GameOverPopup);
         if(uiBase == null)
         {
             Debug.LogWarning($"UI가 생성되지 않았습니다");

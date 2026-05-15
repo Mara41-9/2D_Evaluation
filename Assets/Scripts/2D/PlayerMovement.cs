@@ -216,6 +216,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     _gameTestUI.PlayerHp(_currentHp);
                 }
+
+                if(_currentHp <= 0)
+                {
+                    UIManager.Instance.OpenGameOverPopup();
+                }
             }
 
         }
