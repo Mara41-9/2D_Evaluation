@@ -7,28 +7,23 @@ public class LobbyMainUI : MonoBehaviour
     [Header("Layout_Top")]
     [SerializeField] private GameUIButton Btn_Profile;
 
-    // Layout_RightTop - 오른쪽 부분
-    [Header("Layout_RightTop")]
-    [SerializeField] private GameUIButton Btn_Quest;
-    [SerializeField] private GameUIButton Btn_Inventory;
+    // Layout_Top - 왼쪽 부분
+    [Header("Layout_Top")]
+    [SerializeField] private GameUIButton Btn_Start;
 
-    // Layout_LeftTop - 왼쪽 부분
-    [Header("Layout_LeftTop")]
+    // Layout_Right - 오른쪽 부분
+    [Header("Layout_Right")]
     [SerializeField] private GameUIButton Btn_Skill;
+    [SerializeField] private GameUIButton Btn_Inventory;
+    [SerializeField] private GameUIButton Btn_Quest;
 
 
     private void OnEnable()
     {
-        Btn_Skill.BindOnClickButtonEvent(OnClick_OpenSKillPopup);
         Btn_Profile.BindOnClickButtonEvent(OnClick_OpenProfile);
-        Btn_Quest.BindOnClickButtonEvent(OnClick_OpenQuest);
+        Btn_Skill.BindOnClickButtonEvent(OnClick_OpenSKillPopup);
         Btn_Inventory.BindOnClickButtonEvent(OnClick_OpenInventory);
-    }
-
-    public void OnClick_OpenSKillPopup()
-    {
-        UIManager.Instance.OpenSkillPopup();
-        Debug.LogWarning("스킬 창이 열렸습니다.");
+        Btn_Quest.BindOnClickButtonEvent(OnClick_OpenQuest);
     }
 
     public void OnClick_OpenProfile()
@@ -37,10 +32,15 @@ public class LobbyMainUI : MonoBehaviour
         Debug.LogWarning("프로필 창이 열렸습니다.");
     }
 
-    public void OnClick_OpenQuest()
+    public void OnClick_OpenGameUI()
     {
-        UIManager.Instance.OpenQuestPopup();
-        Debug.LogWarning("퀘스트 창이 열렸습니다.");
+        UIManager.Instance.Open
+    }
+
+    public void OnClick_OpenSKillPopup()
+    {
+        UIManager.Instance.OpenSkillPopup();
+        Debug.LogWarning("스킬 창이 열렸습니다.");
     }
 
     public void OnClick_OpenInventory()
@@ -48,5 +48,12 @@ public class LobbyMainUI : MonoBehaviour
         UIManager.Instance.OpenInventoryPopup();
         Debug.LogWarning("인벤토리 창이 열렸습니다.");
     }
+
+    public void OnClick_OpenQuest()
+    {
+        UIManager.Instance.OpenQuestPopup();
+        Debug.LogWarning("퀘스트 창이 열렸습니다.");
+    }
+
 
 }
