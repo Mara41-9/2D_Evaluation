@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     // 우선 직접 들고 있다가 추후에 UI매니저한테 요청하도록 개선해볼 것
     [SerializeField] private ScoreUI _scoreUI;
+    [SerializeField] private GameTestUI _gameTestUI;
 
     private Rigidbody2D _rigidbody;
     private bool _isGrounded;
@@ -208,9 +209,13 @@ public class PlayerMovement : MonoBehaviour
         {
             if((monsterComponent._moveDirection.x * this.transform.localScale.x) < 0)
             {
-                _currentHp -= 10;
+                _currentHp -= 5;
 
                 Debug.LogWarning($"셀리 공주의 남은 Hp: {_currentHp}");
+                if(_gameTestUI != null)
+                {
+                    _gameTestUI.PlayerHp(_currentHp);
+                }
             }
 
         }

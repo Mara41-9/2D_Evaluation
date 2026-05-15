@@ -11,6 +11,9 @@ public class GameTestUI : MonoBehaviour
     [SerializeField] private GameUIButton Btn_Exit;
     [SerializeField] private GameUIButton Btn_Inventory;
 
+    [SerializeField] private Text Text_CurrentHp;
+
+
     public void OnEnable()
     {
         Btn_Exit.BindOnClickButtonEvent(OnClick_ExitButton);
@@ -32,5 +35,10 @@ public class GameTestUI : MonoBehaviour
     {
         Debug.LogWarning("UI씬 메인UI로 이동합니다.");
         SceneManager.LoadScene("UI_Basic");
+    }
+
+    public void PlayerHp(int currentHp)
+    {
+        Text_CurrentHp.text = $"플레이어 HP : {currentHp}";
     }
 }
