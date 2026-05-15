@@ -23,7 +23,7 @@ public class PlayerModel
 [Serializable]
 public class ItemViewModel
 {
-    public int ItemUniqueId;    // 아이템 고유 ID
+    public long ItemUniqueId;    // 아이템 고유 ID
     public string ItemDataId;   // 어떤 종류의 아이템인지 알려주는 ID
     public int ItemStackCount;  // 아이템 개수
 }
