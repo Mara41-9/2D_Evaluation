@@ -14,14 +14,14 @@ public class PlayerModel
     public string LastMapDataId;          // 마지막으로 있었던 맵의 ID
     public Vector3 LastMapPosition;       // 마지막으로 있던 위치
 
-    public List<ItemViewModel> ItemList;  // 플레이어가 가지고 있는 아이템 목록
-    public List<StageProgressViewModel> StagePogressList;   // 플레이어의 스테이지 진행 목록
+    public List<ItemModel> ItemList;  // 플레이어가 가지고 있는 아이템 목록
+    public List<StageProgressModel> StagePogressList;   // 플레이어의 스테이지 진행 목록
 
 }
 
 // 습득 아이템의 저장 데이터를 담는 클래스
 [Serializable]
-public class ItemViewModel
+public class ItemModel
 {
     public long ItemUniqueId;    // 아이템 고유 ID
     public string ItemDataId;   // 어떤 종류의 아이템인지 알려주는 ID
@@ -31,7 +31,7 @@ public class ItemViewModel
 
 // 스테이지 진행 데이터를 담는 클래스
 [Serializable]
-public class StageProgressViewModel
+public class StageProgressModel
 {
     public string StageId;             // 스테이지 ID
     public bool IsCleared;             // 클리어했는지, 안 했는지
