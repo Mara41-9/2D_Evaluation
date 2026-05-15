@@ -9,16 +9,23 @@ public class GameTestUI : MonoBehaviour
     [SerializeField] private SpawnSpot SpawnSpot_Monster;
 
     [SerializeField] private GameUIButton Btn_Exit;
+    [SerializeField] private GameUIButton Btn_Inventory;
 
     public void OnEnable()
     {
         Btn_Exit.BindOnClickButtonEvent(OnClick_ExitButton);
+        Btn_Inventory.BindOnClickButtonEvent(OnClick_InventoryBtn);
         
     }
 
     public void OnClick_SelectTestBtn()
     {
         SpawnSpot_Monster.StartSpawn();
+    }
+
+    public void OnClick_InventoryBtn()
+    {
+        UIManager.Instance.OpenPopupUI(UIType.InventoryPopup);
     }
 
     private void OnClick_ExitButton()
