@@ -18,33 +18,8 @@ public class InventorySlotUI : MonoBehaviour
     private void OnEnable()
     {
         Btn_Slot.BindOnClickButtonEvent(OnClick_SelectItem);
-        RandomTestItemSetIcon();
     }
 
-    private void RandomTestItemSetIcon()
-    {
-        // 데이터 연동 테스트 전용 - 추후에 제거될 메서드
-        // 0 ~ 3 사이의 랜덤 숫자 뽑음 -> 0, 1, 2
-        int randomIdx = UnityEngine.Random.Range(0, 3);
-
-        // 임시 아이템 ID 저장할 변수 생성
-        string temporalItemDataId = string.Empty;
-
-        switch(randomIdx)
-        {
-            case 0:
-                temporalItemDataId = "Item_Potion_1";
-                break;
-            case 1:
-                temporalItemDataId = "Item_Coin_1";
-                break;
-            case 2:
-                temporalItemDataId = "Item_Sword_1";
-                break;
-        }
-
-        SetIcon(temporalItemDataId);
-    }
 
 
     // 아이템 ID 받아서 해당 아이템의 아이콘 스프라이트를 찾아 슬롯 이미지에 넣어주는 함수
@@ -72,8 +47,10 @@ public class InventorySlotUI : MonoBehaviour
         //    Img_Icon.sprite = sprite;
         //});
 
+
         // 어드레서블 적용 -> 비동기로 바뀜
         GameUtil.LoadAndSetSpriteImage(Img_Icon, iconPath).Forget();
+
 
         //// 실제 이미지 파일 불러옴
         //var sprite = GameUtil.LoadSpriteCanBeNull(iconPath);
