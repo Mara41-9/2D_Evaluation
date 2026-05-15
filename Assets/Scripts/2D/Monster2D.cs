@@ -8,7 +8,7 @@ public class Monster2D : MonoBehaviour
 
     [SerializeField] private SpriteRenderer SpriteRenderer_Monster;
 
-    private Vector3 _moveDirection;   // 적이 이동할 방향 저장 변수
+    public Vector3 _moveDirection;   // 적이 이동할 방향 저장 변수
 
     private void Start()
     {

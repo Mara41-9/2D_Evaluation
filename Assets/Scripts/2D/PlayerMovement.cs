@@ -203,17 +203,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         var monsterComponent = collision.gameObject.GetComponent<Monster2D>();
-        
-        if(monsterComponent == null)
+
+        if(monsterComponent != null)
+        {
+            if((monsterComponent._moveDirection.x * this.transform.localScale.x) < 0)
+            {
+                _currentHp -= 10;
+
+                Debug.LogWarning($"셀리 공주의 남은 Hp: {_currentHp}");
+            }
+
+        }
+        else
         {
             Debug.Log($"충돌한 적 객체에서 컴포넌트를 찾을 수 없습니다 : {gameObject.name}");
             return;
         }
-
-        _currentHp -= 10;
-
-        Debug.LogWarning($"셀리 공주의 남은 Hp: {_currentHp}");
-        
 
 
         //// 플레이어의 콜리전에 충돌한 객체가 Enemy 태그가 아니라면
