@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 39cd6216ebbb07641847da3e8e89a590
   m_SerializeEntries:
+  - m_GUID: 55c9baf40d25fd449833cdec6bb3e7b9
+    m_Address: Icon/Icon_Item_Potato
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 55d00ba520c035f4ab6e03f81d70eb6e
     m_Address: Icon/Icon_Item_Sword_1
     m_ReadOnly: 0

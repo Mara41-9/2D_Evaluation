@@ -404,7 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnSpot
   _spawnSpotType: 1
   _startSpawnType: 2
-  _spawnObjectDataId: harv_corn_1
+  _spawnObjectDataId: harv_potato_1
   Collider_OnSpawnStart: {fileID: 450364289}
 --- !u!1 &463123557
 GameObject:
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnSpot
   _spawnSpotType: 1
   _startSpawnType: 2
-  _spawnObjectDataId: harv_corn_1
+  _spawnObjectDataId: harv_potato_1
   Collider_OnSpawnStart: {fileID: 879449318}
 --- !u!1 &1019084769
 GameObject:
