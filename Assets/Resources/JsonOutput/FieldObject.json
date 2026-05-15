@@ -22,5 +22,17 @@
     "DropItemDataId": "Item_Gold_1",
     "IconPath": null,
     "PrefabPath": "2DPrefab/DropItem_Gold"
+  },
+  {
+    "Id": "harv_potato_1",
+    "FieldObjectType": "Harvest",
+    "Name": "감자",
+    "Description": "필드 채집용 옥수수",
+    "DropCountRange": [
+      10100
+    ],
+    "DropItemDataId": "Item_Potato_1",
+    "IconPath": null,
+    "PrefabPath": "2DPrefab/Harvest_Potato"
   }
 ]

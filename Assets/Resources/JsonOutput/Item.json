@@ -38,5 +38,15 @@
     "MaxStackCount": 100,
     "SellingPrice": 20,
     "IconPath": "Icon/Icon_Item_Corn"
+  },
+  {
+    "Id": "Item_Potato_1",
+    "Name": "감자",
+    "Description": null,
+    "ItemType": null,
+    "Grade": "Normal",
+    "MaxStackCount": 100,
+    "SellingPrice": 20,
+    "IconPath": "Icon/Icon_Item_Potato"
   }
 ]
