@@ -11,14 +11,10 @@ public class ScoreUI : MonoBehaviour
 
         GameManager.Instance.IncreasePlayerExp(10);
 
-        if((currentScore % 10) == 0)
+        if(currentScore == 20)
         {
             Debug.LogWarning("저장 시도!");
             GameManager.Instance.SaveData();
-        }
-
-        if(currentScore == 20)
-        {
             UIManager.Instance.OpenSuccessPopup();
         }
 
