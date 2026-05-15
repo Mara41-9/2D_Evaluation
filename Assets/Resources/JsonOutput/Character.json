@@ -1,9 +1,9 @@
 [
   {
-    "Id": "character_hellena_01",
-    "Name": "헬레나",
-    "Description": "모든 마법을 사용할 수 있는 캐릭터",
-    "SkillList": "skill_fireball_01,skill_normalSword_01",
+    "Id": "character_selly_01",
+    "Name": "셀리",
+    "Description": "퐁당퐁당 왕국의 공주로써 백성들을 위해<nl>식량을 구하러 모험을 떠나는 캐릭터",
+    "SkillList": "skill_sword_01",
     "UseWeaponId": "Weapon_Braclet_1",
     "BasicCostumeId": "Costume_03"
   },

@@ -5,9 +5,9 @@
     "Description": "불로 된 구체를 만들어 날린다."
   },
   {
-    "Id": "skill_normalSword_01",
-    "Name": "검기 날리기",
-    "Description": "적을 벨 수 있는 검기를 날린다."
+    "Id": "skill_sword_01",
+    "Name": "검 휘두르기",
+    "Description": "검을 크게 휘둘러 동물을 베어낸다"
   },
   {
     "Id": "skill_rest_coffee_01",

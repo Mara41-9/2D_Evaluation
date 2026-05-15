@@ -4,11 +4,13 @@ using UnityEngine.UI;
 
 public class MyProfilePopup_Nara : UIBase
 {
-    [SerializeField] private Text Text_Name;
-    [SerializeField] private Text Text_Description_Character;
-    [SerializeField] private Text Text_Skill;
+    [SerializeField] private Text Text_CharacterName;
+    [SerializeField] private Text Text_CharacterDesc;
     [SerializeField] private Text Text_Level;
-    [SerializeField] private Text Text_Weapon;
+    [SerializeField] private Text Text_SkillName;
+    [SerializeField] private Text Text_SkillDesc;
+    [SerializeField] private Text Text_WeaponName;
+    [SerializeField] private Text Text_WeaponDesc;
 
     [SerializeField] private GameUIButton Btn_ClosePopup;
 
@@ -36,7 +38,7 @@ public class MyProfilePopup_Nara : UIBase
     {
         GameUtil.LoadFullData();
 
-        var myHero = GameDataManager.Instance.GetCharacterData("character_hellena_01");
+        var myHero = GameDataManager.Instance.GetCharacterData("character_selly_01");
 
         // 캐릭터 이름 출력하기
         if (myHero != null)
@@ -44,21 +46,28 @@ public class MyProfilePopup_Nara : UIBase
             Debug.Log($"로드된 캐릭터 이름: {myHero.Name}");
 
             // 팝업창에 캐릭터 이름 가져오기
-            Text_Name.text = myHero.Name;
+            Text_CharacterName.text = myHero.Name;
         }
 
 
         // 문자열을 담아둘 임시 변수
-        string dummyDescription = string.Empty;
-        string dummySkill = string.Empty;
-        string dummyWeapon = string.Empty;
+        string dummyCharacterDesc = string.Empty;
+        string dummySkillName = string.Empty;
+        string dummySkillDesc = string.Empty;
+        string dummyWeaponName = string.Empty;
+        string dummyWeaponDesc = string.Empty;
 
-
-        // 팝업창에 캐릭터 설명 가져오기
-        dummyDescription = $"{myHero.Description}";
-        Debug.Log($"로드된 캐릭터 설명: {dummyDescription}");
-        Text_Description_Character.text = dummyDescription;
-
+        if(myHero.Description.Contains("<nl>"))
+        {
+            // myHero.Description 안에 있는 <nl>라는 문자열을 전부 찾아서, 줄바꿈(\n)으로 바꾼다
+            dummyCharacterDesc = myHero.Description.Replace("<nl>", "\n");
+            Debug.Log($"로드된 캐릭터 설명: {dummyCharacterDesc}");
+            Text_CharacterDesc.text = dummyCharacterDesc;
+        }
+        else
+        {
+            return;
+        }
 
 
         // 가지고 있는 기술(스킬) 데이터 가져오기
@@ -70,18 +79,22 @@ public class MyProfilePopup_Nara : UIBase
                 var skillData = GameDataManager.Instance.GetSkill(skillName);
                 if (skillData != null)
                 {
-                    if (dummySkill != string.Empty)
+                    if (dummySkillName != string.Empty)
                     {
-                        dummySkill += ", ";
+                        dummySkillName += ", ";
                     }
 
-                    dummySkill += skillData.Name;
+                    dummySkillName += skillData.Name;
+                    dummySkillDesc = skillData.Description;
+
+
                 }
 
             }
 
-            Debug.Log($"로드된 캐릭터 스킬: {dummySkill}");
-            Text_Skill.text = dummySkill;
+            Debug.Log($"로드된 캐릭터 스킬: {dummySkillName} {dummySkillDesc}");
+            Text_SkillName.text = dummySkillName;
+            Text_SkillDesc.text = dummySkillDesc;
         }
 
 
@@ -92,9 +105,11 @@ public class MyProfilePopup_Nara : UIBase
 
             if(weaponData != null)
             {
-                dummyWeapon = weaponData.Name;
-                Debug.Log($"로드된 캐릭터 무기: {dummyWeapon}");
-                Text_Weapon.text = dummyWeapon;
+                dummyWeaponName = weaponData.Name;
+                dummyWeaponDesc = weaponData.Description;
+                Debug.Log($"로드된 캐릭터 무기: {dummyWeaponName} {dummyWeaponDesc}");
+                Text_WeaponName.text = dummyWeaponName;
+                Text_WeaponDesc.text = dummyWeaponDesc;
             }
             
         }
