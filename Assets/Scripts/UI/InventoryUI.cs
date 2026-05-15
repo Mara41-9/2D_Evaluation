@@ -9,9 +9,6 @@ public class InventoryUI : UIBase
     // 슬롯을 어디에 생성할 것인가
     [SerializeField] private Transform Transform_UISlotRoot;
 
-    // 슬롯을 생성할 버튼 오브젝트
-    [SerializeField] private GameUIButton Btn_CreateSlot;
-
     // 팝업창을 닫을 버튼 오브젝트
     [SerializeField] private GameUIButton Btn_CloseUI;
 
@@ -23,7 +20,6 @@ public class InventoryUI : UIBase
 
     private void OnEnable()
     {
-        Btn_CreateSlot.BindOnClickButtonEvent(OnClick_CreateSlot);
         Btn_CloseUI.BindOnClickButtonEvent(OnClick_CloseUI);
         SetInventoryItemSlotOnEnable();
     }
@@ -56,11 +52,6 @@ public class InventoryUI : UIBase
         {
             CreateSlot(itemModel.ItemDataId, itemModel.ItemStackCount);
         }
-    }
-
-    private void OnClick_CreateSlot()
-    {
-        //CreateSlot();
     }
 
     private void OnClick_CloseUI()
