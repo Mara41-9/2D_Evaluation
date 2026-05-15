@@ -51,6 +51,11 @@ public static partial class UIManagerExtension
         }
     }
 
+    public static void CloseLobbyMainUI(this UIManager uiManager)
+    {
+        uiManager.CloseUI(UIRootType.MainUI, UIType.LobbyMainUI);
+    }
+
     public static void OpenPropilePopup(this UIManager uiManager)
     {
         // 팝업 UI 가져오기 (없으면 생성까지 자동)

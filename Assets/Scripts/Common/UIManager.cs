@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class UIManager : UIBase
@@ -30,8 +31,16 @@ public class UIManager : UIBase
 
     private void Start()
     {
-        // 매니저들이 탄생한 후에 UI매니저가 처음으로 게임이 실행될 때 필요한 UI들을 오픈해준다!
-        this.ShowStartupUIOnGameStart();
+        if (SceneManager.GetActiveScene().name == "UI_Basic")
+        {
+            // 매니저들이 탄생한 후에 UI매니저가 처음으로 게임이 실행될 때 필요한 UI들을 오픈해준다!
+            this.ShowStartupUIOnGameStart();
+        }
+        else
+        {
+            return;
+        }
+
     }
 
     // UI를 열기 위한 함수
@@ -161,7 +170,6 @@ public class UIManager : UIBase
     {
         return OpenUI(UIRootType.PopupUI, uiType);
     }
-
 
     // ContentUI 전용 Close 함수
     public void CloseContentUI(UIType uiType)

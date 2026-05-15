@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LobbyMainUI : MonoBehaviour
+public class LobbyMainUI : UIBase
 {
     // Layout_Top - 맨 윗 부분
     [Header("Layout_Top")]
