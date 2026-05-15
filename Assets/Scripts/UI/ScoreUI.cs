@@ -7,7 +7,7 @@ public class ScoreUI : MonoBehaviour
 
     public void AddGameScore(int currentScore)
     {
-        Text_CurrentScore.text = $"잡은 피그미 수 : {currentScore}";
+        Text_CurrentScore.text = $"잡은 돼지 수 : {currentScore}";
 
         GameManager.Instance.IncreasePlayerExp(10);
 
