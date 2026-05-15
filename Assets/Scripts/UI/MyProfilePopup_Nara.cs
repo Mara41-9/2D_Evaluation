@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyProfilePopup_Nara : MonoBehaviour
+public class MyProfilePopup_Nara : UIBase
 {
     [SerializeField] private Text Text_Name;
     [SerializeField] private Text Text_Description_Character;
@@ -16,7 +16,7 @@ public class MyProfilePopup_Nara : MonoBehaviour
 
     private void OnEnable()
     {
-        //Btn_ClosePopup.BindOnClickButtonEvent(OnClick_CloseProfilePopup);
+        Btn_ClosePopup.BindOnClickButtonEvent(OnClick_CloseProfilePopup);
 
         _level++;
         Text_Level.text = $"{_level}";
@@ -27,7 +27,7 @@ public class MyProfilePopup_Nara : MonoBehaviour
 
     public void OnClick_CloseProfilePopup()
     {
-        UIManager.Instance.ClosePopupUI(UIType.ProfilePopup);
+        UIManager.Instance.ClosePopupUI(UIType.MyProfilePopup);
         Debug.LogWarning("프로필 창이 닫혔습니다.");
     }
 
