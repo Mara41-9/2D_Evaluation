@@ -20,7 +20,7 @@ public class CharacterData : GameDataBase
     public string SkillList;
     public string UseWeaponId;
     public string BasicCostumeId;
-    public string Hp;
+    public int Hp;
 }
 
 [System.Serializable]
