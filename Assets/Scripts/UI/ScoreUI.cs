@@ -17,5 +17,10 @@ public class ScoreUI : MonoBehaviour
             GameManager.Instance.SaveData();
         }
 
+        if(currentScore == 20)
+        {
+            UIManager.Instance.OpenSuccessPopup();
+        }
+
     }
 }
