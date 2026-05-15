@@ -7,7 +7,7 @@
     "Grade": "Normal",
     "MaxStackCount": 20,
     "SellingPrice": 2000,
-    "IconPath": "0_Nara_Resource/Icon/Icon_Item_Potion_1"
+    "IconPath": "Icon/Icon_Item_Potion_1"
   },
   {
     "Id": "Item_Coin_1",
@@ -17,7 +17,7 @@
     "Grade": "Legend",
     "MaxStackCount": 1000,
     "SellingPrice": 1000,
-    "IconPath": "0_Nara_Resource/Icon/Icon_Item_Coin_1"
+    "IconPath": "Icon/Icon_Item_Coin_1"
   },
   {
     "Id": "Item_Sword_1",
@@ -27,6 +27,6 @@
     "Grade": "Epic",
     "MaxStackCount": 1,
     "SellingPrice": 4000,
-    "IconPath": "0_Nara_Resource/Icon/Icon_Item_Sword_1"
+    "IconPath": "Icon/Icon_Item_Sword_1"
   }
 ]

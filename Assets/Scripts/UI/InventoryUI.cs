@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : UIBase
 {
     // 생성할 슬롯 오브젝트
     [SerializeField] private GameObject Prefab_Slot;
