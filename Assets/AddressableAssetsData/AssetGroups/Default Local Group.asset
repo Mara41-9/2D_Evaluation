@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63dbae4b37e852e429fac61daa442f2d
+    m_Address: 2DPrefab/Harvest_Corn
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ad0e5b5cace1364a9a95bde0b63f22b
     m_Address: Icon/Icon_Item_Coin_1
     m_ReadOnly: 0
