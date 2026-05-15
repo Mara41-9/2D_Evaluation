@@ -5,7 +5,8 @@
     "Name": "옥수수",
     "Description": "필드 채집용 옥수수",
     "DropCountRange": [
-      10100
+      10,
+      100
     ],
     "DropItemDataId": "Item_Corn_1",
     "IconPath": null,
@@ -17,7 +18,8 @@
     "Name": "금화",
     "Description": "드랍된 금화",
     "DropCountRange": [
-      101000
+      10,
+      1000
     ],
     "DropItemDataId": "Item_Gold_1",
     "IconPath": null,
@@ -27,9 +29,10 @@
     "Id": "harv_potato_1",
     "FieldObjectType": "Harvest",
     "Name": "감자",
-    "Description": "필드 채집용 옥수수",
+    "Description": "필드 채집용 감자",
     "DropCountRange": [
-      10100
+      10,
+      100
     ],
     "DropItemDataId": "Item_Potato_1",
     "IconPath": null,

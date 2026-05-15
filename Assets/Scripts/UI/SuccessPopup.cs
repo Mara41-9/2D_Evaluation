@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SuccessPopup : MonoBehaviour
+public class SuccessPopup : UIBase
 {
     [SerializeField] private GameUIButton Btn_GoMainUI;
 
