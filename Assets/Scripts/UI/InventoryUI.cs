@@ -25,6 +25,37 @@ public class InventoryUI : UIBase
     {
         Btn_CreateSlot.BindOnClickButtonEvent(OnClick_CreateSlot);
         Btn_CloseUI.BindOnClickButtonEvent(OnClick_CloseUI);
+        SetInventoryItemSlotOnEnable();
+    }
+
+    // 인벤토리 UI가 열릴 때 현재 플레이어 아이템을 기준으로 슬롯 생성
+    private void SetInventoryItemSlotOnEnable()
+    {
+        // 기존 슬롯 초기화 -> 슬롯 중복 생성, UI 꼬임, 데이터 꼬임 방지
+        if(_itemSlotList.Count > 0)
+        {
+            foreach(var slot in _itemSlotList)
+            {
+                // DestroyImmediate: 즉시 삭제
+                DestroyImmediate(slot.Value.gameObject);
+            }
+
+            _itemSlotList.Clear();
+        }
+
+        // 현재 플레이어가 가진 아이템 전체 가져오기
+        var itemList = GameManager.Instance.GetPlayerItemList();
+        if(itemList == null || itemList.Count == 0)
+        {
+            Debug.LogWarning("보유한 아이템이 없습니다!");
+            return;
+        }
+
+        // 아이템 하나당 슬롯 하나 생성
+        foreach (var itemModel in itemList)
+        {
+            CreateSlot(itemModel.ItemDataId, itemModel.ItemStackCount);
+        }
     }
 
     private void OnClick_CreateSlot()
