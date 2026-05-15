@@ -89,6 +89,7 @@ public class FieldObjectData : GameDataBase
     public string Name;
     public string Description;
     public List<int> DropCountRange;
+    public string DropItemDataId;
     public string IconPath;
     public string PrefabPath;
 }
