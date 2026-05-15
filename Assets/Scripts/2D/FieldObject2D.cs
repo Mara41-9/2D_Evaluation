@@ -29,7 +29,8 @@ public class FieldObject2D : MonoBehaviour
 
     // 트리거 충돌 시 호출되는 유니티 이벤트 함수
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    { 
+        // 충돌한게 플레이어라면
         if(collision.CompareTag("Player") == true)
         {
 

@@ -28,5 +28,15 @@
     "MaxStackCount": 1,
     "SellingPrice": 4000,
     "IconPath": "Icon/Icon_Item_Sword_1"
+  },
+  {
+    "Id": "Item_Corn_1",
+    "Name": "옥수수",
+    "Description": null,
+    "ItemType": null,
+    "Grade": "Normal",
+    "MaxStackCount": 100,
+    "SellingPrice": 20,
+    "IconPath": "Icon/Icon_Item_Corn"
   }
 ]
