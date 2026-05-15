@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -70,5 +72,11 @@ public class GameManager : MonoBehaviour
         newItem.ItemStackCount = addItemCount;
 
         _playerModel.ItemList.Add(newItem);
+    }
+
+    public List<ItemModel> GetPlayerItemList()
+    {
+        // _playerModel이 Private이므로 외부에서 ItemList를 받아올 수 있게 Get함수 사용
+        return _playerModel.ItemList;
     }
 }
