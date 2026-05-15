@@ -29,7 +29,7 @@ public class InventoryUI : UIBase
 
     private void OnClick_CreateSlot()
     {
-        CreateSlot();
+        //CreateSlot();
     }
 
     private void OnClick_CloseUI()
