@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _lookRight = true;
 
     private int _currentScore;
+    private int _currentHp;
 
     private HashSet<int> _hitMonsters = new HashSet<int>();   // 중복을 허용하지 않기 위해 HashSet 사용
 
@@ -44,6 +45,17 @@ public class PlayerMovement : MonoBehaviour
         // 2D 캐릭터가 물리 충돌 시, 회전해서 넘어지는 것 방지
         // constraints : 움직임 제한 설정
         _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    private void Start()
+    {
+        var player = GameDataManager.Instance.GetCharacterData("character_selly_01");
+        if (player == null)
+        {
+            return;
+        }
+
+        _currentHp = player.Hp;
     }
 
     private void Update()
@@ -185,6 +197,24 @@ public class PlayerMovement : MonoBehaviour
     // 적 충돌 시 처리하는 함수
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy") == false)
+        {
+            return;
+        }
+
+        var monsterComponent = collision.gameObject.GetComponent<Monster2D>();
+        
+        if(monsterComponent == null)
+        {
+            Debug.Log($"충돌한 적 객체에서 컴포넌트를 찾을 수 없습니다 : {gameObject.name}");
+            return;
+        }
+
+        _currentHp -= 10;
+
+        Debug.LogWarning($"셀리 공주의 남은 Hp: {_currentHp}");
+        
+
 
         //// 플레이어의 콜리전에 충돌한 객체가 Enemy 태그가 아니라면
         //if(collision.gameObject.CompareTag("Enemy") == false)
@@ -208,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
         //    // 피그마를 잡으면 스코어를 올려주자!
         //    AddGameScore();
         //}
-        
+
     }
 
 
