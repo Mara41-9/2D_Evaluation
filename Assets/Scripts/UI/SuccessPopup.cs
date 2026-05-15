@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SuccessPopup : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class SuccessPopup : MonoBehaviour
 
     private void OnClick_GoMainUIBtn()
     {
-        UIManager.Instance.OpenLobbyMainUI();
-        Debug.LogWarning("메인UI로 돌아갑니다.");
+        Debug.LogWarning("UI씬 메인UI로 이동합니다.");
+        SceneManager.LoadScene("UI_Basic");
     }
 }
