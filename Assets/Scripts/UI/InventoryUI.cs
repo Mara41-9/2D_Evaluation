@@ -70,7 +70,7 @@ public class InventoryUI : UIBase
     }
 
 
-    private void CreateSlot()
+    private void CreateSlot(string itemDataId, int itemStackCount)
     {
         // Prefab_Slot을 Transform_UISlotRoot 자식으로 생성
         var gObj = Instantiate(Prefab_Slot, Transform_UISlotRoot);
@@ -84,7 +84,7 @@ public class InventoryUI : UIBase
         _generatedKey++;
 
         // 생성된 슬롯에 고유번호 넣어줌
-        slotComponent.InitSlot(_generatedKey);
+        slotComponent.InitSlot(_generatedKey, itemDataId, itemStackCount);
         // 슬롯 오브젝트 이름 바꿈 -> 하이어라키에서 보기 쉽게
         slotComponent.gameObject.name = $"InventorySlot : {slotComponent.SlotInstanceId}";
 

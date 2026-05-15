@@ -23,7 +23,7 @@ public class InventorySlotUI : MonoBehaviour
 
 
     // 아이템 ID 받아서 해당 아이템의 아이콘 스프라이트를 찾아 슬롯 이미지에 넣어주는 함수
-    private void SetIcon(string itemDataId)
+    private void SetIcon(string itemDataId, int itemCount)
     {
         // GameDataManager에서 해당 아이템 정보 받아옴
         var itemData = GameDataManager.Instance.GetItemData(itemDataId);
@@ -61,6 +61,8 @@ public class InventorySlotUI : MonoBehaviour
         //}
 
         //Img_Icon.sprite = sprite;
+
+        Text_StackCount.text = $"{itemCount}";
     }
 
 
@@ -73,12 +75,10 @@ public class InventorySlotUI : MonoBehaviour
 
 
     // 슬롯이 생성된 후, 슬롯의 슬롯의 기본 정보(고유 번호)를 세팅하는 초기화 함수
-    public void InitSlot(int slotInstanceId)
+    public void InitSlot(int slotInstanceId, string itemDataId, int itemStackCount)
     {
         SlotInstanceId = slotInstanceId;
-        // 슬롯 번호를 문자열로 바꿔서 텍스트 UI에 출력
-        // ToString() -> Text.text는 문자열만 받을 수 있음
-        Text_StackCount.text = slotInstanceId.ToString();
+        SetIcon(itemDataId, itemStackCount);
     }
 
     public void OnClick_SelectItem()
