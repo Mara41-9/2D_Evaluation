@@ -144,6 +144,12 @@ public class UIManager : UIBase
         return _createdUIDic[uiType];
     }
 
+    // MainUI 전용 Open 함수
+    public UIBase OpenMainUI(UIType uiType)
+    {
+        return OpenUI(UIRootType.MainUI, uiType);
+    }
+
     // ContentUI 전용 Open 함수
     public UIBase OpenContentUI(UIType uiType)
     {
@@ -155,6 +161,7 @@ public class UIManager : UIBase
     {
         return OpenUI(UIRootType.PopupUI, uiType);
     }
+
 
     // ContentUI 전용 Close 함수
     public void CloseContentUI(UIType uiType)

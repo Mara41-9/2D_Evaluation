@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyMainUI : MonoBehaviour
@@ -21,6 +22,7 @@ public class LobbyMainUI : MonoBehaviour
     private void OnEnable()
     {
         Btn_Profile.BindOnClickButtonEvent(OnClick_OpenProfile);
+        Btn_Start.BindOnClickButtonEvent(OnClick_Open2dScene);
         Btn_Skill.BindOnClickButtonEvent(OnClick_OpenSKillPopup);
         Btn_Inventory.BindOnClickButtonEvent(OnClick_OpenInventory);
         Btn_Quest.BindOnClickButtonEvent(OnClick_OpenQuest);
@@ -32,9 +34,10 @@ public class LobbyMainUI : MonoBehaviour
         Debug.LogWarning("프로필 창이 열렸습니다.");
     }
 
-    public void OnClick_OpenGameUI()
+    public void OnClick_Open2dScene()
     {
-        UIManager.Instance.Open
+        Debug.LogWarning("게임 씬으로 이동합니다.");
+        SceneManager.LoadScene("2D_Basic");
     }
 
     public void OnClick_OpenSKillPopup()
