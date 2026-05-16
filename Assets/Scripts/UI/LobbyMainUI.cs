@@ -7,6 +7,7 @@ public class LobbyMainUI : UIBase
     // Layout_Top - 맨 윗 부분
     [Header("Layout_Top")]
     [SerializeField] private GameUIButton Btn_Profile;
+    [SerializeField] private Text Text_Exp;
 
     // Layout_Top - 왼쪽 부분
     [Header("Layout_Top")]
@@ -17,6 +18,15 @@ public class LobbyMainUI : UIBase
     [SerializeField] private GameUIButton Btn_Skill;
     [SerializeField] private GameUIButton Btn_Inventory;
     [SerializeField] private GameUIButton Btn_Quest;
+
+    private int _currentExp;
+
+    private void Start()
+    {
+        var playerExp = GameManager.Instance.GetPlayerExp();
+        _currentExp = playerExp;
+        Text_Exp.text = $"플레이어 Exp : {_currentExp}";
+    }
 
 
     private void OnEnable()
@@ -57,6 +67,5 @@ public class LobbyMainUI : UIBase
         UIManager.Instance.OpenQuestPopup();
         Debug.LogWarning("퀘스트 창이 열렸습니다.");
     }
-
 
 }

@@ -256,10 +256,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
     private void AddGameScore()
     {
         _currentScore++;
         _scoreUI.AddGameScore(_currentScore);
+        
+        
     }
 }
