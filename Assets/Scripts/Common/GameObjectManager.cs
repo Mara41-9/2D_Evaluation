@@ -163,11 +163,11 @@ public class GameObjectManager : MonoBehaviour
 
             Destroy(monster.gameObject);
 
-            Debug.Log($"몬스터 제거 완료 : {monsterInstanceId}");
+            Debug.Log($"돼지 제거 완료 : {monsterInstanceId}");
         }
         else
         {
-            Debug.LogError($"몬스터를 찾을 수 없음 : {monsterInstanceId}");
+            Debug.LogError($"돼지를 찾을 수 없음 : {monsterInstanceId}");
         }
 
     }
