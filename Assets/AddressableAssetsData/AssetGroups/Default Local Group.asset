@@ -35,6 +35,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5e72fa6821462548a6d5653a40574ba
+    m_Address: Sound/MianUI_BGM_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7c09252a8c8ccb45af2fdf04ed794f1
     m_Address: Prefabs/2D/Enemy
     m_ReadOnly: 0
